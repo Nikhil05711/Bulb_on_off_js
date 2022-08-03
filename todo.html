@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        ul li {
+            list-style: none;
+            border: 2px solid black;
+            width: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2> TO DO LIST </h2>
+        <input type="text" id="text1"></input>
+        <br /> </br>
+        <button id="submit" onclick="addon()">ADD</button>
+        <!--<button id="delete" onclick="remove()">REMOVE</button>-->
+    </div>
+    <div class="guestList">
+        <div>
+            <ul id="list">
+
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function addon() {
+            let guestName = document.getElementById('text1').value;
+            if (guestName === "") {
+                alert("please input some text")
+            } else if (guestName != "") {
+                var listContainer = document.getElementById('list');
+                let _html = listContainer.innerHTML;
+                _html += `<li>${guestName} <button onclick="remove(this)">Remove </button><button style="margin-left:10px" onclick="update(this)">Update </button></li>`;
+                listContainer.innerHTML = _html;
+            }
+        }
+
+        function remove(sender) {
+            sender.parentElement.remove();
+        }
+
+        var update = (sender) => {
+            let selectedNode = sender.parentElement;
+            let f = selectedNode.innerText;
+            document.getElementById('text1').value = f.replace("RemoveUpdate", "");
+        }
+
+    </script>
+</body>
+
+</html>
